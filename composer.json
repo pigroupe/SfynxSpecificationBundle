@@ -1,0 +1,37 @@
+{
+  "name": "sfynx-project/specification-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony SfynxSpecificationBundle",
+  "keywords": ["pattern", "specification", "symfony", "ddd"],
+  "homepage": "https://github.com/pigroupe/SfynxSpecificationBundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Etienne de Longeaux",
+      "email": "etienne.delongeaux@gmail.com",
+      "homepage": "http://pigroupe.github.io/cmf-sfynx/"
+    },
+    {
+      "name": "Sfynx Community",
+      "homepage": "https://github.com/pigroupe/SfynxSpecificationBundle/graphs/contributors"
+    }
+  ],
+  "require": {
+    "symfony/framework-bundle": "~2.3|~3.0"
+  },
+  "require-dev": {
+    "symfony/phpunit-bridge": "~2.7|~3.0",
+    "phpunit/phpunit": "*"
+  },
+  "suggest": {
+  },
+  "conflict": {
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": { "Sfynx\\SpecificationBundle\\": "" }
+  },
+  "extra": {
+  }
+}
