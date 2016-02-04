@@ -2,24 +2,22 @@
 
 namespace Sfynx\SpecificationBundle\Specification\Compare;
 
-use Sfynx\SpecificationBundle\Specification\Builder\InterfaceSpecification;
-use Sfynx\SpecificationBundle\Specification\Compare\abstractSpecification;
-
 /**
  * This file is part of the <Trigger> project.
  * true if strpos($b, $a) === len($a) - len($b)
- * 
+ *
  * @category   Trigger
  * @package    Specification
- * @subpackage Object
+ * @subpackage Compare
  * @author     Etienne de Longeaux <etienne.delongeaux@gmail.com>
  */
-class EndsWithInsensitiveSpec extends abstractSpecification implements InterfaceSpecification {
-
+class EndsWithInsensitiveSpec extends AbstractSpecification
+{
     private $specification1;
     private $specification2;
 
-    function __construct($specification1, $specification2) {
+    function __construct($specification1, $specification2)
+    {
         $this->specification1 = $specification1;
         $this->specification2 = $specification2;
     }
@@ -27,7 +25,7 @@ class EndsWithInsensitiveSpec extends abstractSpecification implements Interface
     public function isSatisfiedBy($object = null)
     {
         list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
-        
-        return (strpos($b, $a) === len($a) - len($b));
-    } 
+
+        return (strpos($b, $a) === strlen($a) - strlen($b));
+    }
 }

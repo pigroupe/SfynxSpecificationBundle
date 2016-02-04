@@ -1,15 +1,15 @@
 <?php
 
-namespace Sfynx\SpecificationBundle\Specification\Builder;
+namespace Sfynx\SpecificationBundle\Specification\Generalisation;
 
 /**
  * This file is part of the <Trigger> project.
  *
  * @category   Trigger
  * @package    Specification
- * @subpackage Object
+ * @subpackage Builder
  * @author     Etienne de Longeaux <etienne.delongeaux@gmail.com>
- * 
+ *
  * <code>
  * $anyObject = new StdClass;
  * $specification =
@@ -22,7 +22,7 @@ namespace Sfynx\SpecificationBundle\Specification\Builder;
  * ;
  * $isOk = $specification->isSatisfedBy($anyObject);
  * <code>
- * 
+ *
  */
 interface InterfaceSpecification
 {
