@@ -2,11 +2,9 @@
 
 namespace Sfynx\SpecificationBundle\Tests\Specification\Compare;
 
-use Sfynx\SpecificationBundle\Tests\Specification\Compare\SpecTest;
-
 /**
  * This file is part of the <Trigger> project.
- * 
+ *
  * @category   Trigger
  * @package    Specification
  * @subpackage Test
@@ -16,38 +14,38 @@ class RulerTest extends \PHPUnit_Framework_TestCase
 {
    /**
      * Logical test:  (A) === (NOT(NOT(A)))
-     * 
+     *
      * @dataProvider truthTableOne
      */
     public function testDoubleNegation($p)
     {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->EqualToSpec($p, true)
-        ->isSatisfiedBy('coincoin'); 
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->NotSpec(
             $isOk2->NotSpec($isOk2->EqualToSpec($p, true))
         )
         ->isSatisfiedBy('pouetpouet');
-        
+
         $this->assertEquals($val1, $val2);
-        
+
     }
-    
+
     /**
      * Logical test:  (A) === (A OU A)
-     * 
+     *
      * @dataProvider truthTableOne
      */
     public function testTautology($p)
     {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->EqualToSpec($p, true)
-        ->isSatisfiedBy('coincoin'); 
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2
         ->AndSpec(
@@ -57,22 +55,22 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             $isOk2->EqualToSpec($p, true)
         )
         ->isSatisfiedBy('pouetpouet');
-        
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A) === (A AND A)
-     * 
+     *
      * @dataProvider truthTableOne
      */
     public function testTautologyTwo($p)
     {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->EqualToSpec($p, true)
-        ->isSatisfiedBy('coincoin'); 
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2
         ->AndSpec(
@@ -82,13 +80,13 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             $isOk2->EqualToSpec($p, true)
         )
         ->isSatisfiedBy('pouetpouet');
-        
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A OR NOT(A)) === true
-     * 
+     *
      * @dataProvider truthTableOne
      */
     public function testExcludedMiddle($p)
@@ -102,13 +100,13 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             $isOk2->NotSpec($isOk2->EqualToSpec($p, true))
         )
         ->isSatisfiedBy('pouetpouet');
-        
+
         $this->assertEquals(true, $val2);
     }
-    
+
     /**
      * Logical test:  NOT(A AND NOT(A)) === true
-     * 
+     *
      * @dataProvider truthTableOne
      */
     public function testNonContradiction($p)
@@ -124,17 +122,17 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             )
         )
         ->isSatisfiedBy('pouetpouet');
-        
+
         $this->assertEquals(true, $val2);
-    }    
-    
+    }
+
     /**
      * Logical test:  NOT(A AND B) === NOT(A) OR NOT(B)
-     * 
+     *
      * @dataProvider truthTableTwo
      */
     public function testDeMorgan($p, $q)
-    {       
+    {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->NotSpec(
             $isOk1->AndSpec(
@@ -142,11 +140,11 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             )
             ->AndSpec(
                 $isOk1->EqualToSpec($q, true)
-            )        
+            )
         )
-        ->isSatisfiedBy('coincoin'); 
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->NotSpec($isOk2->EqualToSpec($p, true))
@@ -155,13 +153,13 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             $isOk2->NotSpec($isOk2->EqualToSpec($q, true))
         )
         ->isSatisfiedBy('pouetpouet');
-        
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  NOT(A OR B) === NOT(A) AND NOT(B)
-     * 
+     *
      * @dataProvider truthTableTwo
      */
     public function testDeMorganTwo($p, $q)
@@ -173,11 +171,11 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             )
             ->OrSpec(
                 $isOk1->EqualToSpec($q, true)
-            )        
+            )
         )
-        ->isSatisfiedBy('coincoin'); 
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->NotSpec($isOk2->EqualToSpec($p, true))
@@ -186,13 +184,13 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             $isOk2->NotSpec($isOk2->EqualToSpec($q, true))
         )
         ->isSatisfiedBy('pouetpouet');
-        
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A OR B) === (B OR A)
-     * 
+     *
      * @dataProvider truthTableTwo
      */
     public function testCommutation($p, $q)
@@ -203,25 +201,25 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         )
         ->OrSpec(
             $isOk1->EqualToSpec($q, true)
-        )        
-        ->isSatisfiedBy('coincoin'); 
+        )
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->EqualToSpec($q, true)
         )
         ->OrSpec(
             $isOk2->EqualToSpec($p, true)
-        )        
-        ->isSatisfiedBy('pouetpouet'); 
-        
+        )
+        ->isSatisfiedBy('pouetpouet');
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A AND B) === (B AND A)
-     * 
+     *
      * @dataProvider truthTableTwo
      */
     public function testCommutationTwo($p, $q)
@@ -232,29 +230,29 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         )
         ->AndSpec(
             $isOk1->EqualToSpec($q, true)
-        )        
-        ->isSatisfiedBy('coincoin'); 
+        )
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->EqualToSpec($q, true)
         )
         ->AndSpec(
             $isOk2->EqualToSpec($p, true)
-        )        
-        ->isSatisfiedBy('pouetpouet'); 
-        
+        )
+        ->isSatisfiedBy('pouetpouet');
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A OR (B OR C)) === ((A OR B) OR C)
-     * 
+     *
      * @dataProvider truthTableThree
      */
     public function testAssociation($p, $q, $r)
-    {        
+    {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->AndSpec(
             $isOk1->EqualToSpec($p, true)
@@ -266,10 +264,10 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             ->OrSpec(
                 $isOk1->EqualToSpec($r, true)
             )
-        )        
-        ->isSatisfiedBy('coincoin'); 
+        )
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->AndSpec(
@@ -281,15 +279,15 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         )
         ->OrSpec(
             $isOk2->EqualToSpec($r, true)
-        )         
-        ->isSatisfiedBy('pouetpouet'); 
-        
+        )
+        ->isSatisfiedBy('pouetpouet');
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A AND (B AND C)) === ((A AND B) AND C)
-     * 
+     *
      * @dataProvider truthTableThree
      */
     public function testAssociationTwo($p, $q, $r)
@@ -305,10 +303,10 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             ->AndSpec(
                 $isOk1->EqualToSpec($r, true)
             )
-        )        
-        ->isSatisfiedBy('coincoin'); 
+        )
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->AndSpec(
@@ -320,15 +318,15 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         )
         ->AndSpec(
             $isOk2->EqualToSpec($r, true)
-        )         
-        ->isSatisfiedBy('pouetpouet'); 
-        
+        )
+        ->isSatisfiedBy('pouetpouet');
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A AND (B OR C)) === ((A AND B) OR (A AND C))
-     * 
+     *
      * @dataProvider truthTableThree
      */
     public function testDistribution($p, $q, $r)
@@ -344,10 +342,10 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             ->OrSpec(
                 $isOk1->EqualToSpec($r, true)
             )
-        )        
-        ->isSatisfiedBy('coincoin'); 
+        )
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->AndSpec(
@@ -364,15 +362,15 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             ->AndSpec(
                 $isOk2->EqualToSpec($r, true)
             )
-        )        
-        ->isSatisfiedBy('pouetpouet'); 
-        
+        )
+        ->isSatisfiedBy('pouetpouet');
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     /**
      * Logical test:  (A OR (B AND C)) === ((A OR B) AND (A OR C))
-     * 
+     *
      * @dataProvider truthTableThree
      */
     public function testDistributionTwo($p, $q, $r)
@@ -388,10 +386,10 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             ->AndSpec(
                 $isOk1->EqualToSpec($r, true)
             )
-        )        
-        ->isSatisfiedBy('coincoin'); 
+        )
+        ->isSatisfiedBy('coincoin');
 
-        
+
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->AndSpec(
             $isOk2->AndSpec(
@@ -408,20 +406,20 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             ->OrSpec(
                 $isOk2->EqualToSpec($r, true)
             )
-        )        
-        ->isSatisfiedBy('pouetpouet'); 
-        
+        )
+        ->isSatisfiedBy('pouetpouet');
+
         $this->assertEquals($val1, $val2);
     }
-    
+
     public function truthTableOne()
     {
         return array(
             array(true),
             array(false),
         );
-    }    
-    
+    }
+
     public function truthTableTwo()
     {
         return array(
@@ -430,8 +428,8 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             array(false, true),
             array(false, false),
         );
-    }    
-    
+    }
+
     public function truthTableThree()
     {
         return array(
@@ -444,5 +442,5 @@ class RulerTest extends \PHPUnit_Framework_TestCase
             array(false, false, true),
             array(false, false, false),
         );
-    }    
+    }
 }

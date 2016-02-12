@@ -2,8 +2,7 @@
 
 namespace Sfynx\SpecificationBundle\Specification\Logical;
 
-use Sfynx\SpecificationBundle\Specification\Builder\InterfaceSpecification;
-use Sfynx\SpecificationBundle\Specification\Logical\abstractSpecification;
+use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
 
 /**
  * This file is part of the <Trigger> project.
@@ -11,28 +10,30 @@ use Sfynx\SpecificationBundle\Specification\Logical\abstractSpecification;
  *
  * @category   Trigger
  * @package    Specification
- * @subpackage Object
+ * @subpackage Logical
  */
-class XorSpec extends abstractSpecification implements InterfaceSpecification 
+class XorSpec extends AbstractSpecification
 {
     private $specification1;
     private $specification2;
 
-    function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2) {
+    function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
+    {
         $this->specification1 = $specification1;
         $this->specification2 = $specification2;
     }
 
-    public function isSatisfiedBy($object) {
-        return (
-                ($this->specification1->isSatisfiedBy($object)
-                    &&  !$this->specification2->isSatisfiedBy($object)
-                )
-                ||
-                (!$this->specification1->isSatisfiedBy($object)
-                    &&  $this->specification2->isSatisfiedBy($object)                    
-                )
-           )
-        ;
+    public function isSatisfiedBy($object)
+    {
+        $a = $this->specification1->isSatisfiedBy($object);
+        if ($a === false) {
+            self::addErrorMessage($this->specification1->getMessage());
+        }
+        $b = $this->specification2->isSatisfiedBy($object);
+        if ($b === false) {
+            self::addErrorMessage($this->specification2->getMessage());
+        }
+
+        return ($a and !$b) || (!$a and $b);
     }
 }

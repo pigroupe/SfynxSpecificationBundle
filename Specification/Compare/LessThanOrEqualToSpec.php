@@ -2,24 +2,22 @@
 
 namespace Sfynx\SpecificationBundle\Specification\Compare;
 
-use Sfynx\SpecificationBundle\Specification\Builder\InterfaceSpecification;
-use Sfynx\SpecificationBundle\Specification\Compare\abstractSpecification;
-
 /**
  * This file is part of the <Trigger> project.
  * true if $a <= $b
- * 
+ *
  * @category   Trigger
  * @package    Specification
- * @subpackage Object
+ * @subpackage Compare
  * @author     Etienne de Longeaux <etienne.delongeaux@gmail.com>
  */
-class LessThanOrEqualToSpec extends abstractSpecification implements InterfaceSpecification {
-
+class LessThanOrEqualToSpec extends AbstractSpecification
+{
     private $specification1;
     private $specification2;
 
-    function __construct($specification1, $specification2) {
+    function __construct($specification1, $specification2)
+    {
         $this->specification1 = $specification1;
         $this->specification2 = $specification2;
     }
@@ -27,7 +25,7 @@ class LessThanOrEqualToSpec extends abstractSpecification implements InterfaceSp
     public function isSatisfiedBy($object)
     {
         list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
-        
+
         return ($a <= $b);
     }
 }
