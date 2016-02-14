@@ -5,6 +5,7 @@
   "keywords": ["ddd", "pattern", "specification"],
   "homepage": "http://pigroupe.github.io/cmf-sfynx/",
   "license": "MIT",
+
   "authors": [
     {
       "name": "Etienne de Longeaux",
