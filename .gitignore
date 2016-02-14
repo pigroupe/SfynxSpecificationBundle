@@ -1,14 +1,8 @@
-# Cache and logs (Symfony2)
-/vendor/
-
-# PHPUnit
+# application
+vendor
 phpunit.xml
-
-# Build data
-/build/
-
-# Composer PHAR
-/composer.phar
+composer.phar
+composer.lock
 
 #
 .idea
