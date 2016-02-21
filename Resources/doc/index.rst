@@ -26,9 +26,9 @@ Require the bundle with composer:
 
 .. code-block:: bash
 
-    $ composer require sfynx-project/specification-bundle "~2.8@dev"
+    $ composer require sfynx-project/tool-specification-bundle "~2.8@dev"
 
-Composer will install the bundle to your project's ``vendor/sfynx-project/specification-bundle`` directory.
+Composer will install the bundle to your project's ``vendor/sfynx-project/tool-specification-bundle`` directory.
 
 Step 2: Enable the bundle
 ~~~~~~~~~~~~~~~~~~~~~~~~~
