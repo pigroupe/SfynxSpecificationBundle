@@ -14,9 +14,9 @@ use Sfynx\SpecificationBundle\Specification\AbstractSpecification;
  */
 class SpecTest extends AbstractSpecification {
 
-    public function isSatisfiedBy($object)
+    public function isSatisfiedBy(\stdClass $object)
     {
-        if (strlen($object) >= 3) {
+        if (strlen($object->str) >= 3) {
             return true;
         } else {
             return false;

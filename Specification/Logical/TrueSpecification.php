@@ -19,7 +19,7 @@ class TrueSpecification implements InterfaceSpecification
      * @param $object
      * @return bool
      */
-    public function isSatisfiedBy($object)
+    public function isSatisfiedBy(\stdClass $object)
     {
         return true;
     }

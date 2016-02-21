@@ -22,7 +22,7 @@ class NotSpec extends AbstractSpecification
         $this->specification = $specification;
     }
 
-    public function isSatisfiedBy($object)
+    public function isSatisfiedBy(\stdClass $object)
     {
         return !$this->specification->isSatisfiedBy($object);
     }

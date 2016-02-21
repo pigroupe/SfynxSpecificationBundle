@@ -12,6 +12,14 @@ namespace Sfynx\SpecificationBundle\Tests\Specification\Compare;
  */
 class RulerTest extends \PHPUnit_Framework_TestCase
 {
+    public static $object;
+
+    public static function setUpBeforeClass()
+    {
+        static::$object = new \stdClass();
+        static::$object->str = 'coincoin';
+    }
+
    /**
      * Logical test:  (A) === (NOT(NOT(A)))
      *
@@ -21,14 +29,14 @@ class RulerTest extends \PHPUnit_Framework_TestCase
     {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->EqualToSpec($p, true)
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
         $val2 = $isOk2->NotSpec(
             $isOk2->NotSpec($isOk2->EqualToSpec($p, true))
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
 
@@ -43,7 +51,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
     {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->EqualToSpec($p, true)
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -54,7 +62,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->OrSpec(
             $isOk2->EqualToSpec($p, true)
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -68,7 +76,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
     {
         $isOk1 = (new SpecTest());
         $val1 = $isOk1->EqualToSpec($p, true)
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -79,7 +87,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->AndSpec(
             $isOk2->EqualToSpec($p, true)
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -99,7 +107,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->OrSpec(
             $isOk2->NotSpec($isOk2->EqualToSpec($p, true))
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals(true, $val2);
     }
@@ -121,7 +129,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk2->NotSpec($isOk2->EqualToSpec($p, true))
             )
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals(true, $val2);
     }
@@ -142,7 +150,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk1->EqualToSpec($q, true)
             )
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -152,7 +160,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->OrSpec(
             $isOk2->NotSpec($isOk2->EqualToSpec($q, true))
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -173,7 +181,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk1->EqualToSpec($q, true)
             )
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -183,7 +191,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->AndSpec(
             $isOk2->NotSpec($isOk2->EqualToSpec($q, true))
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -202,7 +210,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->OrSpec(
             $isOk1->EqualToSpec($q, true)
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -212,7 +220,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->OrSpec(
             $isOk2->EqualToSpec($p, true)
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -231,7 +239,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->AndSpec(
             $isOk1->EqualToSpec($q, true)
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -241,7 +249,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->AndSpec(
             $isOk2->EqualToSpec($p, true)
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -265,7 +273,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk1->EqualToSpec($r, true)
             )
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -280,7 +288,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->OrSpec(
             $isOk2->EqualToSpec($r, true)
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -304,7 +312,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk1->EqualToSpec($r, true)
             )
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -319,7 +327,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
         ->AndSpec(
             $isOk2->EqualToSpec($r, true)
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -343,7 +351,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk1->EqualToSpec($r, true)
             )
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -363,7 +371,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk2->EqualToSpec($r, true)
             )
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
@@ -387,7 +395,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk1->EqualToSpec($r, true)
             )
         )
-        ->isSatisfiedBy('coincoin');
+        ->isSatisfiedBy(static::$object);
 
 
         $isOk2 = (new SpecTest());
@@ -407,7 +415,7 @@ class RulerTest extends \PHPUnit_Framework_TestCase
                 $isOk2->EqualToSpec($r, true)
             )
         )
-        ->isSatisfiedBy('pouetpouet');
+        ->isSatisfiedBy(static::$object);
 
         $this->assertEquals($val1, $val2);
     }
