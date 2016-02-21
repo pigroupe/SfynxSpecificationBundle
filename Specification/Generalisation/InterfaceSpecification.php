@@ -26,5 +26,5 @@ namespace Sfynx\SpecificationBundle\Specification\Generalisation;
  */
 interface InterfaceSpecification
 {
-    public function isSatisfiedBy($object);
+    public function isSatisfiedBy(\stdClass $object);
 }
