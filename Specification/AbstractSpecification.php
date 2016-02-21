@@ -13,6 +13,4 @@ use Sfynx\SpecificationBundle\Specification\Logical\AbstractSpecification as Log
  * @abstract
  */
 abstract class AbstractSpecification extends LogicalSpec implements InterfaceSpecification
-{
-
-}
+{}

@@ -24,7 +24,7 @@ class OrSpec extends AbstractSpecification
         $this->specification2 = $specification2;
     }
 
-    public function isSatisfiedBy($object)
+    public function isSatisfiedBy(\stdClass $object)
     {
         $a = $this->specification1->isSatisfiedBy($object);
         if ($a === false) {
