@@ -12,7 +12,7 @@ in this bundle, and available on symfony.com:
 
 * [Read the Documentation for master](https://github.com/pigroupe/SfynxSpecificationBundle/blob/master/Resources/doc/index.rst)
 
-* [Read the Documentation for 2.8.x](https://github.com/pigroupe/SfynxSpecificationBundle/blob/2.8/Specification/Resources/doc/index.rst)
+* [Read the Documentation for 2.8.x](https://github.com/pigroupe/SfynxSpecificationBundle/blob/2.8/Resources/doc/index.rst)
 
 Installation
 ------------
