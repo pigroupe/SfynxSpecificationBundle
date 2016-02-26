@@ -13,7 +13,15 @@ use Sfynx\SpecificationBundle\Specification\Compare\abstractSpecification as Com
  * @subpackage Object
  * @abstract
  */
-abstract class abstractSpecification extends CompareSpec implements InterfaceSpecification {
+abstract class abstractSpecification extends CompareSpec implements InterfaceSpecification
+{
+    protected static $errorMessages = array();
+    protected $message;
+
+    public function __construct($message = '')
+    {
+        $this->message = $message;
+    }
 
     public function AndSpec(InterfaceSpecification $specification) {
         return new AndSpec($this, $specification);
@@ -34,5 +42,21 @@ abstract class abstractSpecification extends CompareSpec implements InterfaceSpe
 
     public function XorSpec(InterfaceSpecification $specification) {
         return new XorSpec($this, $specification);
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    public static function addErrorMessage($message)
+    {
+        self::$errorMessages[] = $message;
+    }
+
+    public static function getErrorMessages()
+    {
+
+        return self::$errorMessages;
     }
 }
