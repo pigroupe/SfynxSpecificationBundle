@@ -22,7 +22,7 @@ class EqualToSpec extends AbstractSpecification
         $this->specification2 = $specification2;
     }
 
-    public function isSatisfiedBy($object = null)
+    public function isSatisfiedBy(\stdClass $object = null)
     {
         list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
 

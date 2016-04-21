@@ -3,7 +3,7 @@
 namespace Sfynx\SpecificationBundle\Specification\Compare;
 
 use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
-use DemoApiContext\Domain\Specification\Handler\TraitErrorMessage;
+use Sfynx\SpecificationBundle\Specification\Generalisation\TraitErrorMessage;
 
 /**
  * This file is part of the <Trigger> project.
@@ -16,6 +16,14 @@ use DemoApiContext\Domain\Specification\Handler\TraitErrorMessage;
 abstract class AbstractSpecification implements InterfaceSpecification
 {
     use TraitErrorMessage;
+
+    /**
+     * @param string $errorMessage
+     */
+    public function __construct($errorMessage = '')
+    {
+        $this->errorMessage = $errorMessage;
+    }
 
     /**
      * @param $name

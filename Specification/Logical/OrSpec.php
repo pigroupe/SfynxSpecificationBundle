@@ -28,11 +28,11 @@ class OrSpec extends AbstractSpecification
     {
         $a = $this->specification1->isSatisfiedBy($object);
         if ($a === false) {
-            self::addErrorMessage($this->specification1->getMessage());
+            self::addErrorMessage($this->specification1->getErrorMessage());
         }
         $b = $this->specification2->isSatisfiedBy($object);
         if ($b === false) {
-            self::addErrorMessage($this->specification2->getMessage());
+            self::addErrorMessage($this->specification2->getErrorMessage());
         }
 
         return $a || $b;
