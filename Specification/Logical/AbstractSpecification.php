@@ -4,6 +4,7 @@ namespace Sfynx\SpecificationBundle\Specification\Logical;
 
 use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
 use Sfynx\SpecificationBundle\Specification\Compare\abstractSpecification as CompareSpec;
+use DemoApiContext\Domain\Specification\Handler\TraitErrorMessage;
 
 /**
  * This file is part of the <Trigger> project.
@@ -13,7 +14,9 @@ use Sfynx\SpecificationBundle\Specification\Compare\abstractSpecification as Com
  * @subpackage Object
  * @abstract
  */
-abstract class abstractSpecification extends CompareSpec implements InterfaceSpecification {
+abstract class AbstractSpecification extends CompareSpec implements InterfaceSpecification
+{
+    use TraitErrorMessage;
 
     public function AndSpec(InterfaceSpecification $specification) {
         return new AndSpec($this, $specification);

@@ -26,28 +26,12 @@ Require the bundle with composer:
 
 .. code-block:: bash
 
-    $ composer require sfynx-project/tool-specification-bundle "~2.8@dev"
+    $ composer require sfynx-project/tool-specification-bundle "~2.8"
 
 Composer will install the bundle to your project's ``vendor/sfynx-project/tool-specification-bundle`` directory.
 
-Step 2: Enable the bundle
-~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Enable the bundle in the kernel::
-
-    <?php
-    // app/AppKernel.php
-
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Sfynx\SpecificationBundle\SfynxSpecificationBundle(),
-            // ...
-        );
-    }
-
-Step 3: Create your own specification class
+Step 2: Create your own specification class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The goal of this bundle is to provide some ``Specification`` classes to your system.

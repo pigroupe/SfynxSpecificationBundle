@@ -17,7 +17,7 @@ class XorSpec extends AbstractSpecification
     private $specification1;
     private $specification2;
 
-    function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
+    public function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
     {
         $this->specification1 = $specification1;
         $this->specification2 = $specification2;
