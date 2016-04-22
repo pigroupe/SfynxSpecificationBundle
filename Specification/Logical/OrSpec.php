@@ -18,7 +18,7 @@ class OrSpec extends AbstractSpecification
     private $specification1;
     private $specification2;
 
-    function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
+    public function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
     {
         $this->specification1 = $specification1;
         $this->specification2 = $specification2;
@@ -28,11 +28,11 @@ class OrSpec extends AbstractSpecification
     {
         $a = $this->specification1->isSatisfiedBy($object);
         if ($a === false) {
-            self::addErrorMessage($this->specification1->getMessage());
+            self::addErrorMessage($this->specification1->getErrorMessage());
         }
         $b = $this->specification2->isSatisfiedBy($object);
         if ($b === false) {
-            self::addErrorMessage($this->specification2->getMessage());
+            self::addErrorMessage($this->specification2->getErrorMessage());
         }
 
         return $a || $b;

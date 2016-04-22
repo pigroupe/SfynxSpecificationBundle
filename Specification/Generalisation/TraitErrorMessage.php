@@ -1,6 +1,6 @@
 <?php
 
-namespace DemoApiContext\Domain\Specification\Handler;
+namespace Sfynx\SpecificationBundle\Specification\Generalisation;
 
 /**
  * This file is part of the <Trigger> project.
@@ -21,22 +21,22 @@ trait TraitErrorMessage
     /**
      * @var string
      */
-    protected $message;
-
-    /**
-     * @param string $message
-     */
-    public function __construct($message = '')
-    {
-        $this->message = $message;
-    }
+    protected $errorMessage;
 
     /**
      * @return string
      */
-    public function getMessage()
+    public function getErrorMessage()
     {
-        return $this->message;
+        return $this->errorMessage;
+    }
+
+    /**
+     * @param string $errorMessage
+     */
+    public function setErrorMessage($errorMessage = '')
+    {
+        $this->errorMessage = $errorMessage;
     }
 
     /**
@@ -44,7 +44,9 @@ trait TraitErrorMessage
      */
     public static function addErrorMessage($message)
     {
-        self::$errorMessages[] = $message;
+        if (null !== $message && '' !== $message) {
+            self::$errorMessages[] = $message;
+        }
     }
 
     /**
@@ -53,5 +55,10 @@ trait TraitErrorMessage
     public static function getErrorMessages()
     {
         return self::$errorMessages;
+    }
+
+    public static function clearErrorMessages()
+    {
+        self::$errorMessages = [];
     }
 }

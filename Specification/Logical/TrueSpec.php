@@ -11,7 +11,7 @@ use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecificatio
  * @package    Specification
  * @author     Laurent DE NIL <laurent.denil@gmail.com>
  */
-class TrueSpecification implements InterfaceSpecification
+class TrueSpec implements InterfaceSpecification
 {
     /**
      * always true
