@@ -25,7 +25,7 @@ class StartsWithSpec extends AbstractSpecification
     public function isSatisfiedBy(\stdClass $object = null)
     {
         list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
-
+//@TODO profiler
         return stripos($a, $b) === 0;
     }
 
