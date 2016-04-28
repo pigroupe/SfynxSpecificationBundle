@@ -24,6 +24,17 @@ class NotSpec extends AbstractSpecification
 
     public function isSatisfiedBy(\stdClass $object)
     {
-        return !$this->specification->isSatisfiedBy($object);
+        $result = $this->specification->isSatisfiedBy($object);
+        static::addToProfiler([$this->getLogicalExpression() => $result]);
+
+        $result = !$result;
+        static::addToProfiler([$this->getLogicalExpression() => $result]);
+
+        return $result;
+    }
+
+    public function getLogicalExpression()
+    {
+        return sprintf('NOT(%s)',$this->specification->getLogicalExpression());
     }
 }

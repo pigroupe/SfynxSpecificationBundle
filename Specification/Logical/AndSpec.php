@@ -25,16 +25,14 @@ class AndSpec extends AbstractSpecification
 
     public function isSatisfiedBy(\stdClass $object)
     {
-        $a = $this->specification1->isSatisfiedBy($object);
-        if ($a === false) {
-            self::addErrorMessage($this->specification1->getErrorMessage());
-        }
-        $b = $this->specification2->isSatisfiedBy($object);
-        if ($b === false) {
-            self::addErrorMessage($this->specification2->getErrorMessage());
-        }
+        $result = $this->specification1->isSatisfiedBy($object) && $this->specification2->isSatisfiedBy($object);
+        static::addToProfiler([$this->getLogicalExpression() => $result]);
 
-        return $a && $b;
+        return $result;
     }
 
+    public function getLogicalExpression()
+    {
+        return sprintf('(%s AND %s)', $this->specification1->getLogicalExpression(), $this->specification2->getLogicalExpression());
+    }
 }
