@@ -36,6 +36,12 @@ class CeilSpec extends AbstractSpecification
 
     public function getLogicalExpression()
     {
-        return sprintf('CEIL(%s)', $this->specification1->getLogicalExpression());
+        if ($this->specification1 instanceof InterfaceSpecification) {
+            $exp1 = $this->specification1->getLogicalExpression();
+        } else {
+            $exp1 = $this->specification1;
+        }
+
+        return sprintf('CEIL(%s)', $exp1);
     }
 }

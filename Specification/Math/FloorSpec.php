@@ -37,6 +37,12 @@ class FloorSpec extends AbstractSpecification
 
     public function getLogicalExpression()
     {
-        return sprintf('FLOOR(%s)', $this->specification1->getLogicalExpression());
+        if ($this->specification1 instanceof InterfaceSpecification) {
+            $exp1 = $this->specification1->getLogicalExpression();
+        } else {
+            $exp1 = $this->specification1;
+        }
+
+        return sprintf('FLOOR(%s)', $exp1);
     }
 }

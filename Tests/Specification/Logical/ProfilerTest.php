@@ -66,7 +66,7 @@ class ProfilerTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        OrSpec::$details = [];
+        OrSpec::resetProfiler();
     }
 
     public function initMyHolidaySpec()
@@ -139,6 +139,8 @@ class ProfilerTest extends \PHPUnit_Framework_TestCase
             ['(NOT(MyDayOffSpec) AND NOT(MyHolidaySpec))' => true],
             ['(NOT(MyBirthdaySpec) AND (NOT(MyDayOffSpec) AND NOT(MyHolidaySpec)))' => true],
         ];
+
+
 
         $this->combinedSpec2->isSatisfiedBy($this->object);
         $actual = $this->combinedSpec2->getProfiler();

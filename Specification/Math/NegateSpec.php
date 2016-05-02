@@ -29,7 +29,7 @@ class NegateSpec extends AbstractSpecification
         } else {
             $a = $this->specification1;
         }
-        $result = -$a;
+        $result = -($a);
         static::addToProfiler([$this->getLogicalExpression() => $result]);
 
         return $result;
@@ -37,6 +37,12 @@ class NegateSpec extends AbstractSpecification
 
     public function getLogicalExpression()
     {
-        return sprintf('(-%s)', $this->specification1->getLogicalExpression());
+        if ($this->specification1 instanceof InterfaceSpecification) {
+            $exp1 = $this->specification1->getLogicalExpression();
+        } else {
+            $exp1 = $this->specification1;
+        }
+
+        return sprintf('(-%s)', $exp1);
     }
 }

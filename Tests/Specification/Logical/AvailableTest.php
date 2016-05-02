@@ -122,20 +122,17 @@ class AvailableTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->date = new DateTime('1995-05-05');
         $this->assertFalse($this->combinedSpec->isSatisfiedBy($this->object));//not available because it's birthday
-        $this->assertCount(2, OrSpec::getErrorMessages());//2 errors for 2 specs (day off, holiday)
     }
 
     public function testIsNotAvailableBecauseDayOff()
     {
         $this->object->date = new DateTime('2016-05-15');
         $this->assertFalse($this->combinedSpec->isSatisfiedBy($this->object));//not available because it's day off
-        $this->assertCount(2, OrSpec::getErrorMessages());//2 errors for 2 specs (holiday, birthday)
     }
 
     public function testIsNotAvailableBecauseHoliday()
     {
         $this->object->date = new DateTime('2016-08-02');
         $this->assertFalse($this->combinedSpec->isSatisfiedBy($this->object));//not available because it's holiday
-        $this->assertCount(2, OrSpec::getErrorMessages());//2 errors for 2 specs (day off, birthday)
     }
 }

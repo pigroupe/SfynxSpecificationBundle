@@ -33,6 +33,18 @@ class AndSpec extends AbstractSpecification
 
     public function getLogicalExpression()
     {
-        return sprintf('(%s AND %s)', $this->specification1->getLogicalExpression(), $this->specification2->getLogicalExpression());
+        if ($this->specification1 instanceof InterfaceSpecification) {
+            $exp1 = $this->specification1->getLogicalExpression();
+        } else {
+            $exp1 = $this->specification1;
+        }
+
+        if ($this->specification2 instanceof InterfaceSpecification) {
+            $exp2 = $this->specification2->getLogicalExpression();
+        } else {
+            $exp2 = $this->specification2;
+        }
+
+        return sprintf('(%s AND %s)', $exp1, $exp2);
     }
 }
