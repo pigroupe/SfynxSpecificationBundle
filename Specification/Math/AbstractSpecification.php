@@ -3,6 +3,7 @@
 namespace Sfynx\SpecificationBundle\Specification\Math;
 
 use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
+use Sfynx\SpecificationBundle\Specification\Generalisation\TraitProfiler;
 
 /**
  * This file is part of the <Trigger> project.
@@ -14,6 +15,8 @@ use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecificatio
  */
 abstract class AbstractSpecification implements InterfaceSpecification
 {
+    use TraitProfiler;
+
     public function __call($name, $arguments)
     {
         $className = '\Sfynx\SpecificationBundle\Specification\Math\\' . $name;
@@ -28,6 +31,11 @@ abstract class AbstractSpecification implements InterfaceSpecification
         } else {
             throw new \Exception('The class does not existed');
         }
+    }
+
+    public function getLogicalExpression()
+    {
+        return end(explode('\\', get_called_class()));
     }
 
     protected function setValues($specification1, $specification2, $object)

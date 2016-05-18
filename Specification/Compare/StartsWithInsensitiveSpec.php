@@ -4,7 +4,7 @@ namespace Sfynx\SpecificationBundle\Specification\Compare;
 
 /**
  * This file is part of the <Trigger> project.
- * true if strpos($b, $a) === 0
+ * true if stripos($a, $b) === 0
  *
  * @category   Trigger
  * @package    Specification
@@ -16,16 +16,21 @@ class StartsWithInsensitiveSpec extends AbstractSpecification
     private $specification1;
     private $specification2;
 
-    function __construct($specification1, $specification2)
+    public function __construct($specification1, $specification2)
     {
         $this->specification1 = $specification1;
         $this->specification2 = $specification2;
     }
 
-    public function isSatisfiedBy($object = null)
+    public function isSatisfiedBy(\stdClass $object = null)
     {
         list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
+//@TODO profiler
+        return strpos($a, $b) === 0;
+    }
 
-        return strpos($b, $a) === 0;
+    public function getLogicalExpression()
+    {
+        return sprintf('(%s STARTS_WITH_INSENSITIVE %s)', $this->specification1->getLogicalExpression(), $this->specification2->getLogicalExpression());
     }
 }

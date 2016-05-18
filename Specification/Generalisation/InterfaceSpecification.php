@@ -13,6 +13,7 @@ namespace Sfynx\SpecificationBundle\Specification\Generalisation;
  * <code>
  * $anyObject = new StdClass;
  * $specification =
+ * @TODO to fix!
  * new MySpecification1()
  *   ->andSpec(new MySpecification2())
  *   ->andSpec(

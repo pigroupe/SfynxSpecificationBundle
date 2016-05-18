@@ -26,14 +26,27 @@ class XorSpec extends AbstractSpecification
     public function isSatisfiedBy(\stdClass $object)
     {
         $a = $this->specification1->isSatisfiedBy($object);
-        if ($a === false) {
-            self::addErrorMessage($this->specification1->getErrorMessage());
-        }
         $b = $this->specification2->isSatisfiedBy($object);
-        if ($b === false) {
-            self::addErrorMessage($this->specification2->getErrorMessage());
+        $result = ($a and !$b) || (!$a and $b);
+        static::addToProfiler([$this->getLogicalExpression() => $result]);
+
+        return $result;
+    }
+
+    public function getLogicalExpression()
+    {
+        if ($this->specification1 instanceof InterfaceSpecification) {
+            $exp1 = $this->specification1->getLogicalExpression();
+        } else {
+            $exp1 = $this->specification1;
         }
 
-        return ($a and !$b) || (!$a and $b);
+        if ($this->specification2 instanceof InterfaceSpecification) {
+            $exp2 = $this->specification2->getLogicalExpression();
+        } else {
+            $exp2 = $this->specification2;
+        }
+
+        return sprintf('(%s XOR %s)', $exp1, $exp2);
     }
 }

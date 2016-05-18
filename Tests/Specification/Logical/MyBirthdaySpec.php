@@ -10,10 +10,9 @@ class MyBirthdaySpec extends AbstractSpecification
 {
     private $birthday;
 
-    public function __construct($message, $date)
+    public function __construct(DateTime $date)
     {
-        $this->birthday = new DateTime($date);
-        parent::__construct($message);
+        $this->birthday = $date;
     }
 
     public function isSatisfiedBy(stdClass $object)

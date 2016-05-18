@@ -1,32 +1,33 @@
 <?php
 
-namespace Sfynx\SpecificationBundle\Specification\Logical;
+namespace Sfynx\SpecificationBundle\Specification\Math;
 
 use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
 
 /**
  * This file is part of the <Trigger> project.
- * True if either condition is true
+ * return $a - $b
  *
  * @category   Trigger
  * @package    Specification
- * @subpackage Logical
+ * @subpackage Math
  * @author     Etienne de Longeaux <etienne.delongeaux@gmail.com>
  */
-class OrSpec extends AbstractSpecification
+class SubstractSpec extends AbstractSpecification
 {
     private $specification1;
     private $specification2;
 
-    public function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
+    public function __construct($specification1, $specification2)
     {
         $this->specification1 = $specification1;
         $this->specification2 = $specification2;
     }
 
-    public function isSatisfiedBy(\stdClass $object)
+    public function isSatisfiedBy(\stdClass $object = null)
     {
-        $result = $this->specification1->isSatisfiedBy($object) || $this->specification2->isSatisfiedBy($object);
+        list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
+        $result = ($a - ($b));
         static::addToProfiler([$this->getLogicalExpression() => $result]);
 
         return $result;
@@ -46,6 +47,6 @@ class OrSpec extends AbstractSpecification
             $exp2 = $this->specification2;
         }
 
-        return sprintf('(%s OR %s)', $exp1, $exp2);
+        return sprintf('(%s - (%s))', $exp1, $exp2);
     }
 }
