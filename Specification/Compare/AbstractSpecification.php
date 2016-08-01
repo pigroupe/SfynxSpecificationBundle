@@ -42,7 +42,8 @@ abstract class AbstractSpecification implements InterfaceSpecification
 
     public function getLogicalExpression()
     {
-        return end(explode('\\', get_called_class()));
+        $classNames = explode('\\', get_called_class());
+        return end($classNames);
     }
 
     /**
@@ -53,8 +54,8 @@ abstract class AbstractSpecification implements InterfaceSpecification
      */
     protected function setValues($specification1, $specification2, $object)
     {
-        if ($specification1 instanceof  InterfaceSpecification
-                && $specification2 instanceof  InterfaceSpecification)
+        if ($specification1 instanceof InterfaceSpecification
+                && $specification2 instanceof InterfaceSpecification)
         {
             $a = $specification1->isSatisfiedBy($object);
             $b = $specification2->isSatisfiedBy($object);
