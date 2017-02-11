@@ -35,16 +35,14 @@ class XorSpec extends AbstractSpecification
 
     public function getLogicalExpression()
     {
+        $exp1 = $this->specification1;
         if ($this->specification1 instanceof InterfaceSpecification) {
             $exp1 = $this->specification1->getLogicalExpression();
-        } else {
-            $exp1 = $this->specification1;
         }
 
+        $exp2 = $this->specification2;
         if ($this->specification2 instanceof InterfaceSpecification) {
             $exp2 = $this->specification2->getLogicalExpression();
-        } else {
-            $exp2 = $this->specification2;
         }
 
         return sprintf('(%s XOR %s)', $exp1, $exp2);

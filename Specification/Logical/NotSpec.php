@@ -35,10 +35,9 @@ class NotSpec extends AbstractSpecification
 
     public function getLogicalExpression()
     {
+        $exp1 = $this->specification;
         if ($this->specification instanceof InterfaceSpecification) {
             $exp1 = $this->specification->getLogicalExpression();
-        } else {
-            $exp1 = $this->specification;
         }
 
         return sprintf('NOT(%s)',$exp1);

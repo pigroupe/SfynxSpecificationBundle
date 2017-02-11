@@ -16,11 +16,6 @@ trait TraitProfiler
         return self::$profilerStack;
     }
 
-    public static function sgetProfiler()
-    {
-        return self::$profilerStack;
-    }
-
     public static function addToProfiler(array $data)
     {
         self::$profilerStack[] = $data;

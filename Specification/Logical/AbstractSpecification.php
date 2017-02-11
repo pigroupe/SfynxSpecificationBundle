@@ -26,9 +26,8 @@ abstract class AbstractSpecification extends CompareSpec implements InterfaceSpe
     public function NotSpec($specification = null) {
         if ($specification instanceof  InterfaceSpecification) {
             return new NotSpec($specification);
-        } else {
-            return new NotSpec($this);
         }
+        return new NotSpec($this);
     }
 
     public function XorSpec(InterfaceSpecification $specification) {
