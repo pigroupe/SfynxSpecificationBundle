@@ -19,8 +19,7 @@ abstract class abstractSpecification extends CompareSpec implements InterfaceSpe
      * @param InterfaceSpecification $specification
      * @return AndSpec
      */
-    public function AndSpec(InterfaceSpecification $specification) 
-    {
+    public function AndSpec(InterfaceSpecification $specification) {
         return new AndSpec($this, $specification);
     }
 
@@ -28,8 +27,7 @@ abstract class abstractSpecification extends CompareSpec implements InterfaceSpe
      * @param InterfaceSpecification $specification
      * @return OrSpec
      */
-    public function OrSpec(InterfaceSpecification $specification) 
-    {
+    public function OrSpec(InterfaceSpecification $specification) {
         return new OrSpec($this, $specification);
     }
 
@@ -37,8 +35,7 @@ abstract class abstractSpecification extends CompareSpec implements InterfaceSpe
      * @param null $specification
      * @return NotSpec
      */
-    public function NotSpec($specification = null)
-    {
+    public function NotSpec($specification = null) {
         if ($specification instanceof  InterfaceSpecification) {
             return new NotSpec($specification);
         }
@@ -49,8 +46,7 @@ abstract class abstractSpecification extends CompareSpec implements InterfaceSpe
      * @param InterfaceSpecification $specification
      * @return XorSpec
      */
-    public function XorSpec(InterfaceSpecification $specification)
-    {
+    public function XorSpec(InterfaceSpecification $specification) {
         return new XorSpec($this, $specification);
     }
 }
