@@ -1,5 +1,4 @@
 <?php
-
 namespace Sfynx\SpecificationBundle\Specification\Math;
 
 use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
@@ -15,14 +14,14 @@ use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecificatio
  */
 class NegateSpec extends AbstractSpecification
 {
-    private $specification1;
+    protected $specification1;
 
-    public function __construct($specification1)
+    public function __construct(InterfaceSpecification $specification1)
     {
         $this->specification1 = $specification1;
     }
 
-    public function isSatisfiedBy(\stdClass $object = null)
+    public function isSatisfiedBy(\stdClass $object)
     {
         if ($this->specification1 instanceof InterfaceSpecification) {
             $a = $this->specification1->isSatisfiedBy($object);

@@ -15,7 +15,7 @@ use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecificatio
  */
 class NotSpec extends AbstractSpecification
 {
-    private $specification;
+    protected $specification;
 
     public function __construct(InterfaceSpecification $specification)
     {
@@ -40,6 +40,6 @@ class NotSpec extends AbstractSpecification
             $exp1 = $this->specification->getLogicalExpression();
         }
 
-        return sprintf('NOT(%s)',$exp1);
+        return sprintf('NOT(%s)', $exp1);
     }
 }

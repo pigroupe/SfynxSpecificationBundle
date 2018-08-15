@@ -26,24 +26,15 @@ abstract class AbstractSpecification implements InterfaceSpecification
     public function __call($name, $arguments)
     {
         $className = '\Sfynx\SpecificationBundle\Specification\Compare\\' . $name;
-        if (class_exists($className)) {
+        if (\class_exists($className)) {
             if (isset($arguments[0])
-                    && $arguments[0] instanceof InterfaceSpecification
+                && $arguments[0] instanceof InterfaceSpecification
             ) {
                 return new $className($this, $arguments[0]);
-            } else {
-                return new $className($arguments[0], $arguments[1]);
             }
-
-        } else {
-            throw new \Exception('The class does not existed');
+            return new $className($arguments[0], $arguments[1]);
         }
-    }
-
-    public function getLogicalExpression()
-    {
-        $classNames = explode('\\', get_called_class());
-        return end($classNames);
+        throw new \Exception('The class does not existed');
     }
 
     /**
@@ -55,7 +46,7 @@ abstract class AbstractSpecification implements InterfaceSpecification
     protected function setValues($specification1, $specification2, $object)
     {
         if ($specification1 instanceof InterfaceSpecification
-                && $specification2 instanceof InterfaceSpecification)
+            && $specification2 instanceof InterfaceSpecification)
         {
             $a = $specification1->isSatisfiedBy($object);
             $b = $specification2->isSatisfiedBy($object);
@@ -64,6 +55,6 @@ abstract class AbstractSpecification implements InterfaceSpecification
             $b = $specification2;
         }
 
-        return array($a, $b);
+        return [$a, $b];
     }
 }

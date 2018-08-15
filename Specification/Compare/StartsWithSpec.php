@@ -1,6 +1,7 @@
 <?php
-
 namespace Sfynx\SpecificationBundle\Specification\Compare;
+
+use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
 
 /**
  * This file is part of the <Trigger> project.
@@ -13,8 +14,8 @@ namespace Sfynx\SpecificationBundle\Specification\Compare;
  */
 class StartsWithSpec extends AbstractSpecification
 {
-    private $specification1;
-    private $specification2;
+    protected $specification1;
+    protected $specification2;
 
     public function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
     {
@@ -22,7 +23,7 @@ class StartsWithSpec extends AbstractSpecification
         $this->specification2 = $specification2;
     }
 
-    public function isSatisfiedBy(\stdClass $object = null)
+    public function isSatisfiedBy(\stdClass $object)
     {
         list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
 //@TODO profiler

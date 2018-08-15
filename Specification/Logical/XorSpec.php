@@ -14,8 +14,8 @@ use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecificatio
  */
 class XorSpec extends AbstractSpecification
 {
-    private $specification1;
-    private $specification2;
+    protected $specification1;
+    protected $specification2;
 
     public function __construct(InterfaceSpecification $specification1, InterfaceSpecification $specification2)
     {
