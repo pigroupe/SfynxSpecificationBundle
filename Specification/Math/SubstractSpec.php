@@ -1,18 +1,18 @@
 <?php
-namespace Sfynx\SpecificationBundle\Specification\Compare;
+namespace Sfynx\SpecificationBundle\Specification\Math;
 
 use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
 
 /**
  * This file is part of the <Trigger> project.
- * true if stripos($a, $b) === 0
+ * return $a - $b
  *
  * @category   Trigger
  * @package    Specification
- * @subpackage Compare
+ * @subpackage Math
  * @author     Etienne de Longeaux <etienne.delongeaux@gmail.com>
  */
-class StartsWithSpec extends AbstractSpecification
+class SubstractSpec extends AbstractSpecification
 {
     protected $specification1;
     protected $specification2;
@@ -26,12 +26,26 @@ class StartsWithSpec extends AbstractSpecification
     public function isSatisfiedBy(\stdClass $object)
     {
         list($a, $b) = $this->setValues($this->specification1, $this->specification2, $object);
-//@TODO profiler
-        return stripos($a, $b) === 0;
+        $result = ($a - ($b));
+        static::addToProfiler([$this->getLogicalExpression() => $result]);
+
+        return $result;
     }
 
     public function getLogicalExpression()
     {
-        return sprintf('(%s STARTS_WITH %s)', $this->specification1->getLogicalExpression(), $this->specification2->getLogicalExpression());
+        if ($this->specification1 instanceof InterfaceSpecification) {
+            $exp1 = $this->specification1->getLogicalExpression();
+        } else {
+            $exp1 = $this->specification1;
+        }
+
+        if ($this->specification2 instanceof InterfaceSpecification) {
+            $exp2 = $this->specification2->getLogicalExpression();
+        } else {
+            $exp2 = $this->specification2;
+        }
+
+        return sprintf('(%s - (%s))', $exp1, $exp2);
     }
 }

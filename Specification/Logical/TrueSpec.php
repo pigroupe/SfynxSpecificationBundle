@@ -2,8 +2,6 @@
 
 namespace Sfynx\SpecificationBundle\Specification\Logical;
 
-use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecification;
-
 /**
  * This file is part of the <Trigger> project.
  *
@@ -11,7 +9,7 @@ use Sfynx\SpecificationBundle\Specification\Generalisation\InterfaceSpecificatio
  * @package    Specification
  * @author     Laurent DE NIL <laurent.denil@gmail.com>
  */
-class TrueSpecification implements InterfaceSpecification
+class TrueSpec extends AbstractSpecification
 {
     /**
      * always true

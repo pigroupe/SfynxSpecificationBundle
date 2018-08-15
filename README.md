@@ -1,26 +1,47 @@
-﻿Specification SFYNX Bundles
-=====================
+﻿# Specification SFYNX Bundle
 
-Specification Bundle provides handlers to rapidly develop with the specification pattern in DDD applicative architecture.
+Symfony3/4's Sfynx Specification Bundle provides handlers to rapidly develop with the specification pattern in DDD applicative architecture.
 This is to simplify the work of developers with DDD pattern, and enable to follow the SOLID principles in the POO development.
 
-Documentation
--------------
+## Documentation
  
-The source of the documentation is stored in the `Resources/doc/` folder
-in this bundle, and available on symfony.com:
+The source of the documentation is stored in the `Resources/doc/` folder in this bundle:
 
-* [Read the Documentation for master](https://github.com/pigroupe/SfynxSpecificationBundle/blob/master/Resources/doc/index.rst)
+* [Read the Documentation for master](https://github.com/pigroupe/SfynxSpecificationBundle/blob/master/Resources/doc/index.md)
 
-* [Read the Documentation for 2.8.x](https://github.com/pigroupe/SfynxSpecificationBundle/blob/2.8/Resources/doc/index.rst)
+* [Read the Documentation](Resources/doc/index.md)
 
-Installation
-------------
+## Installation
 
-All the installation instructions are located in the documentation.
+> a) Prerequisites
 
-Reporting an issue or a feature request
----------------------------------------
+This version of the bundle requires php 7.0+.
+
+> b) Configuration
+
+Add dependencies in your `composer.json` file:
+
+```json
+"require": {
+    ...
+    "sfynx-project/tool-specification-bundle": "dev-master"
+},
+```
+
+Install these new dependencies of your application:
+
+```sh
+$ composer update --no-interaction --with-dependencies
+```
+
+## Tests
+
+To execute unit tests:
+```sh
+$ phpunit --coverage-text
+```
+
+## Reporting an issue or a feature request
 
 Issues and feature requests are tracked in the [Github issue tracker](https://github.com/pigroupe/SfynxSpecificationBundle/issues).
 
@@ -29,11 +50,10 @@ built using the [Symfony Standard Edition](https://github.com/symfony/symfony-st
 to allow developers of the bundle to reproduce the issue by simply cloning it
 and following some steps.
 
-License
--------
+## License
 
-**Copyright © 20012-2014, contact@pi-groupe.fr.**
-**This bundle is under the [GNU General Public License](https://github.com/pigroupe/SfynxSpecificationBundle/blob/master/LICENSE), permitting combination and redistribution with software that uses the MIT License**
+**Copyright © 2018, contact@pi-groupe.net.**
+**This bundle is under the [GNU Lesser General Public License](LICENSE), permitting combination and redistribution with software that uses the MIT License**
 
 SFYNX is a free software distributed under the GPL license. This license guarantees the following freedoms:
 
@@ -54,13 +74,11 @@ SFYNX is a free software distributed under the GPL license. This license guarant
 
 - In French law, SFYNX falls under the regulations stipulated in the code of intellectual property rights (CPI). The SFYNX kernel is a collaborative work by its authors, listed above as per article L 113-1 of the CPI. The entire SFYNX project is comprised of a collective work in respect of articles L 113-2 and L 113-5 of the CPI. The authors release the work to the public in accordance with the rights and obligations as defined by the GNU public license.
 
-About
------
+## About
 
 SfynxSpecificationBundle is a [Project PI-GROUPE Development](https://github.com/pigroupe) initiative.
 See also the list of [contributors](https://github.com/orgs/pigroupe/people).
 
 **For more information** : 
 * http://www.sfynx.fr
-* http://www.pi-groupe.fr
 * http://www.pi-groupe.net
