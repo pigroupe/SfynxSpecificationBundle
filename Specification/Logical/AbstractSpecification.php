@@ -15,14 +15,26 @@ use Sfynx\SpecificationBundle\Specification\Compare\AbstractSpecification as Com
  */
 abstract class AbstractSpecification extends CompareSpec implements InterfaceSpecification
 {
+    /**
+     * @param InterfaceSpecification $specification
+     * @return AndSpec
+     */
     public function AndSpec(InterfaceSpecification $specification) {
         return new AndSpec($this, $specification);
     }
 
+    /**
+     * @param InterfaceSpecification $specification
+     * @return OrSpec
+     */
     public function OrSpec(InterfaceSpecification $specification) {
         return new OrSpec($this, $specification);
     }
 
+    /**
+     * @param null $specification
+     * @return NotSpec
+     */
     public function NotSpec($specification = null) {
         if ($specification instanceof  InterfaceSpecification) {
             return new NotSpec($specification);
@@ -30,6 +42,10 @@ abstract class AbstractSpecification extends CompareSpec implements InterfaceSpe
         return new NotSpec($this);
     }
 
+    /**
+     * @param InterfaceSpecification $specification
+     * @return XorSpec
+     */
     public function XorSpec(InterfaceSpecification $specification) {
         return new XorSpec($this, $specification);
     }

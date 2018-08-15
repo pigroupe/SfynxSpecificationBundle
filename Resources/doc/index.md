@@ -63,10 +63,10 @@ $isOk = $specification->isSatisfedBy($anyObject);
 ```php
 $specs = new XorSpecification(
     new XorSpecification(
-        new SpecIsRoleAdmin("authenticate permission denied, you must have admin role"),
-        new SpecIsRoleAnonymous("authenticate permission denied, you must have anonymous role")
+        new SpecIsRoleAdmin(),
+        new SpecIsRoleAnonymous()
     ),
-    new SpecIsRoleUser("authenticate permission denied, you must have user role")
+    new SpecIsRoleUser()
 );
 
 if (!$specs->isSatisfiedBy($this->object)) {
