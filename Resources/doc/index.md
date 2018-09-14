@@ -1,4 +1,4 @@
-# SfynxSpecificationBundle documentation
+# v2.8.5 SfynxSpecificationBundle documentation
 
 The Symfony provides a flexible framework that
 allows you to compose with a DDD (Domain-driven design) applicative architecture.

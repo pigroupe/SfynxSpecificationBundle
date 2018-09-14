@@ -15,7 +15,7 @@ The source of the documentation is stored in the `Resources/doc/` folder in this
 
 > a) Prerequisites
 
-This version of the bundle requires php 7.0+.
+This version of the bundle requires php 7.2+.
 
 > b) Configuration
 
